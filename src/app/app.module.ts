@@ -14,6 +14,8 @@ import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { ChartComponent } from './chart/chart.component';
 import { ZippyMultislotComponent } from './zippy-multislot/zippy-multislot.component';
+import { AuthenticationModule } from './components/authentication/authentication.module';
+import { routing} from './app.routing';
 
 @NgModule({
   declarations: [
@@ -32,16 +34,11 @@ import { ZippyMultislotComponent } from './zippy-multislot/zippy-multislot.compo
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      { path: '', component: ProductListComponent },
-      { path: 'list-product', component: ProductListComponent },
-      { path: 'products/:productId', component: ProductDetailComponent },
-      { path: 'cart', component: CartComponent },
-      { path: 'shipping', component: ShippingComponent },
-    ]),
+    routing,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),
+    AuthenticationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
