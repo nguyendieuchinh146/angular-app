@@ -9,6 +9,10 @@ import { Product, products } from '../products';
 export class ProductListComponent implements OnInit {
   //products = [{name: ''}]
   products : any = [];
+  productSearch: any ={
+    name : '',
+    description: ''
+  }
   constructor() { }
 
   ngOnInit(): void {
@@ -24,6 +28,13 @@ export class ProductListComponent implements OnInit {
   }
   onNotify() {
     window.alert('You will be notified when the product goes on sale');
+  }
+
+  valueChange(event: any) { // without type info
+    console.log(event);
+  }
+  onKey(event: any) { // without type info
+    console.log(event.target);
   }
 
 }

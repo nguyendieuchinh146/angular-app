@@ -1,4 +1,31 @@
 <h2>Products</h2>
+<p>Name: {{productSearch.name}}</p>
+<p>Description: {{productSearch.description}}</p>
+<table class="table table-bordered">
+    <thead class="">
+        <th>Product name</th>
+        <th>Product description</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+    <tr>
+        <td><input type="text" [(ngModel)]="productSearch.name" (ngModelChange)="valueChange($event)" (keyup)="onKey($event)"></td>
+        <td><input type="text" [(ngModel)]="productSearch.description" (ngModelChange)="valueChange($event)"></td>
+        <td></td>
+    </tr>
+    <tr *ngFor="let product of products">
+        <td><a [title]="product.name + ' details'"
+               [routerLink]="['/products', product.id]">{{ product.name }}</a></td>
+        <td>{{ product.description }}</td>
+        <td>
+            <button type="button" (click)="share()">
+                Share
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
 <div *ngFor="let product of products">
 
     <h3>
