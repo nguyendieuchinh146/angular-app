@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 @Component({
     selector: 'fx-authentication',
     templateUrl: './authentication.component.html',
-    styleUrls: ['./authentication.component.sass'],
+    styleUrls: ['./authentication.component.css'],
 })
 export class AuthenticationComponent implements OnInit {
     params: any;

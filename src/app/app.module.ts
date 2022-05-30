@@ -15,6 +15,7 @@ import { ShippingComponent } from './shipping/shipping.component';
 import { ChartComponent } from './chart/chart.component';
 import { ZippyMultislotComponent } from './zippy-multislot/zippy-multislot.component';
 import { AuthenticationModule } from './components/authentication/authentication.module';
+import { CrmModule } from './components/crm/crm.module';
 import { routing} from './app.routing';
 
 @NgModule({
@@ -38,7 +39,8 @@ import { routing} from './app.routing';
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),
-    AuthenticationModule
+    AuthenticationModule,
+        CrmModule
   ],
   providers: [],
   bootstrap: [AppComponent]
