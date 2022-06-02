@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-app';
+  color = '';
+  audio = 'assets/audios/audio.mp3';
+
+  onClickElement(event:any){
+    console.log('event',event)
+  }
 }
