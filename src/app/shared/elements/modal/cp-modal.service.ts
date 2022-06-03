@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -11,22 +12,15 @@ export class ModalService {
     modalServiceData: any[] = [];
     dataModal : {[k: string]: any} = {};
 
+    private modalSource = new BehaviorSubject('');
+    currentModal = this.modalSource.asObservable();
+
     constructor(private http: HttpClient) {
 
     }
 
-    getModalData(modalIdVal: string): Observable<any> {
-        //return this.modalServiceData.filter((v: any) => v.modalId == modalIdVal);
-
-        return new Observable<any>((observer) => {
-            const res = this.dataModal[modalIdVal];
-            observer.next(res);
-            observer.complete();
-        }).pipe(
-            map((res: any) => {
-                return res;
-            })
-        );
+    getModalData(modalIdVal: string){
+        return this.modalServiceData.filter((v: any) => v.modalId == modalIdVal);
     }
     setModalData(modalIdVal:string, data: any){
         //this.modalServiceData =  this.modalServiceData.filter((v: any) => v.modalId != modalIdVal);
@@ -34,6 +28,7 @@ export class ModalService {
 
         //object key variable
         this.dataModal[modalIdVal] = data;
+        this.modalSource.next(data)
     }
     clearModalData(modalIdVal:string) {
         //this.modalServiceData =  this.modalServiceData.filter((v: any) => v.modalId != modalIdVal);

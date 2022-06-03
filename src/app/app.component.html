@@ -35,18 +35,29 @@
   <!--<p [appHighlight]="color">Highlight me!</p>-->
   <!--<p [playAudio]="audio" defaultAudio="'tests1111.mp3'">Play</p>-->
 </div>
-
+<div class="interaction">
+  <!--<app-parent></app-parent>-->
+  <!--<app-sibling></app-sibling>-->
+</div>
 <div class="element-components">
   <!--<cp-button [title]="'Submit'" [class]="'cs_btn'" (onClick)='onClickElement($event)'></cp-button>-->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Click modal</button>
+  <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Click modal</button>-->
 
-  <cp-modal [modalId]="modalId" [headerTitle]="'Test header'" [csModalClass]="'cs_modal_login'">
-    <div body>
-      <cp-modal-content [modalId]="modalId"></cp-modal-content>
-    </div>
-    <div footer></div>
-  </cp-modal>
-  <div>{{modalService.dataModal | json }}</div>
+  <!--<cp-modal [modalId]="modalId" [headerTitle]="'Test header'" [csModalClass]="'cs_modal_login'">-->
+    <!--<div body>-->
+      <!--<cp-modal-content [modalId]="modalId"></cp-modal-content>-->
+    <!--</div>-->
+    <!--<div footer></div>-->
+  <!--</cp-modal>-->
+
+  <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Click modal</button>-->
+  <!--<cp-modal [modalId]="'loginModal'" [headerTitle]="'Test header'" [csModalClass]="'cs_modal_login'">-->
+    <!--<div body>-->
+      <!--<cp-modal-content [modalId]="'loginModal'"></cp-modal-content>-->
+    <!--</div>-->
+    <!--<div footer></div>-->
+  <!--</cp-modal>-->
+  <!--<div>Data modal: {{dataModal | json }}</div>-->
   <!--<div>{{dataModal | json }}</div>-->
 </div>
 

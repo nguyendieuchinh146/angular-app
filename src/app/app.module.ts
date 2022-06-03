@@ -10,9 +10,16 @@ import { CrmModule } from './components/crm/crm.module';
 import { routing} from './app.routing';
 import {SharedModule} from './shared/shared.module';
 
+import { ParentComponent } from './components/interaction/parent.compoent';
+import { ChildComponent } from  './components/interaction/child.component';
+import { SiblingComponent } from './components/interaction/sibling.compoent';
+
 @NgModule({
   declarations: [
     AppComponent,
+    ParentComponent,
+    ChildComponent,
+    SiblingComponent
   ],
   imports: [
     BrowserModule,

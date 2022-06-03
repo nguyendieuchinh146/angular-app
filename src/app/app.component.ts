@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from './shared/elements/modal/cp-modal.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,9 @@ export class AppComponent implements OnInit{
   modalId = 'exampleModal';
   dataModal : any;
 
+  message:string ='';
+  subscription: Subscription = new Subscription();
+
   constructor(public modalService: ModalService ) { }
 
   onClickElement(event:any){
@@ -20,6 +24,14 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.modalService.getModalData(this.modalId).subscribe((data: any) => console.log(data));
+    this.subscription = this.modalService.currentModal.subscribe(dataModal => this.onChangeValue(dataModal))
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  onChangeValue(value: any){
+    console.log(value);
+    this.dataModal = value
   }
 }
