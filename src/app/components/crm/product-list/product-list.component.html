@@ -1,6 +1,10 @@
 <h2>Products</h2>
-<p>Name: {{productSearch.name}}</p>
-<p>Description: {{productSearch.description}}</p>
+<div class="search_block" style="">
+    <h3>Search</h3>
+    <p>Name: {{productSearch.name}}</p>
+    <p>Description: {{productSearch.description}}</p>
+</div>
+
 <table class="table table-bordered">
     <thead class="">
         <th>Product name</th>
@@ -9,43 +13,49 @@
     </thead>
     <tbody>
     <tr>
-        <td><input type="text" [(ngModel)]="productSearch.name" (ngModelChange)="valueChange($event)" (keyup)="onKey($event)"></td>
-        <td><input type="text" [(ngModel)]="productSearch.description" (ngModelChange)="valueChange($event)"></td>
+        <td><input class="form-control" type="text" [(ngModel)]="productSearch.name" (ngModelChange)="valueChange($event)" (keyup)="onKey($event)"></td>
+        <td><input class="form-control" type="text" [(ngModel)]="productSearch.description" (ngModelChange)="valueChange($event)"></td>
         <td></td>
     </tr>
     <tr *ngFor="let product of products">
         <td><a [title]="product.name + ' details'"
-               [routerLink]="['/products', product.id]">{{ product.name }}</a></td>
+               [routerLink]="['/crm/products', product.id]">{{ product.name }}</a></td>
         <td>{{ product.description }}</td>
         <td>
-            <button type="button" (click)="share()">
+            <button style="margin-bottom: 10px" class="btn btn-primary btn-sm" type="button" (click)="share()">
                 Share
             </button>
+            <app-product-alerts
+                    [product]="product"
+                    (notify)="onNotify()">
+            </app-product-alerts>
         </td>
     </tr>
     </tbody>
 </table>
 
-<div *ngFor="let product of products">
+<h2>Chart</h2>
+<app-chart></app-chart>
+<!--<div *ngFor="let product of products">-->
 
-    <h3>
-        <a [title]="product.name + ' details'"
-           [routerLink]="['/products', product.id]">
-            {{ product.name }}
-        </a>
-    </h3>
+    <!--<h3>-->
+        <!--<a [title]="product.name + ' details'"-->
+           <!--[routerLink]="['/products', product.id]">-->
+            <!--{{ product.name }}-->
+        <!--</a>-->
+    <!--</h3>-->
 
-    <p *ngIf="product.description">
-        Description: {{ product.description }}
-    </p>
+    <!--<p *ngIf="product.description">-->
+        <!--Description: {{ product.description }}-->
+    <!--</p>-->
 
-    <button type="button" (click)="share()">
-        Share
-    </button>
+    <!--<button type="button" (click)="share()">-->
+        <!--Share-->
+    <!--</button>-->
 
-    <app-product-alerts
-            [product]="product"
-            (notify)="onNotify()">
-    </app-product-alerts>
+    <!--<app-product-alerts-->
+            <!--[product]="product"-->
+            <!--(notify)="onNotify()">-->
+    <!--</app-product-alerts>-->
 
-</div>
+<!--</div>-->

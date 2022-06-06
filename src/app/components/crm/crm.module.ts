@@ -14,7 +14,7 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductAlertsComponent } from './product-alerts/product-alerts.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
+import { TopBarComponent } from '../layouts/top-bar/top-bar.component';
 import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { ChartComponent } from './chart/chart.component';
