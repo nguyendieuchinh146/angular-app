@@ -10,21 +10,33 @@
       .sub-nav-link{
         color: rgba(255,255,255,.5);
         text-decoration: none;
-        &:hover{
+        &:hover, &.active{
           background-color: transparent;
           color: rgba(255,255,255,.75);
         }
       }
     }
+    .active{
+      .sub-nav-link{
+        color: rgba(255,255,255,1);
+      }
+    }
+    @media screen and (min-width: 992px) {
+      position: absolute;
+      background-color: #343a40!important;
+      padding-left: 0;
+      .sub-nav-item{
+        padding: 10px;
+      }
+    }
   }
   .expanded{
+    .nav-link{
+      color: rgba(255,255,255,1);
+    }
     .sub-nav {
       max-height: 500px;
       transition: max-height 0.5s ease-in;
     }
   }
-  //.nav-item:hover .sub-nav{
-  //  max-height: 500px;
-  //  transition: max-height 0.25s ease-in;
-  //}
 }

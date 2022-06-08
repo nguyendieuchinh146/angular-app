@@ -38,14 +38,14 @@
   <!--<p [playAudio]="audio" defaultAudio="'tests1111.mp3'">Play</p>-->
 </div>
 <div class="interaction">
-  <!--<app-parent></app-parent>-->
+  <app-parent></app-parent>
   <!--<app-sibling></app-sibling>-->
 </div>
 <div class="element-components">
   <!--<cp-button [title]="'Submit'" [class]="'cs_btn'" (onClick)='onClickElement($event)'></cp-button>-->
-  <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Click modal</button>-->
+  <!--<button type="button" class="btn btn-primary" data-toggle="modal" [attr.data-target]="targetModalId">Click modal</button>-->
 
-  <!--<cp-modal [modalId]="modalId" [headerTitle]="'Test header'" [csModalClass]="'cs_modal_login'">-->
+  <!--<cp-modal [modalId]="modalId" [headerTitle]="'Test header Login'" [csModalClass]="'cs_modal_login'">-->
     <!--<div body>-->
       <!--<cp-modal-content [modalId]="modalId"></cp-modal-content>-->
     <!--</div>-->
@@ -64,6 +64,6 @@
 </div>
 
 <div class="container">
-  <router-outlet></router-outlet>
+  <!--<router-outlet></router-outlet>-->
 </div>
 

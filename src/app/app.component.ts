@@ -11,7 +11,8 @@ export class AppComponent implements OnInit{
   title = 'my-app';
   color = '';
   audio = 'assets/audios/audio.mp3';
-  modalId = 'exampleModal';
+  modalId = 'exampleModalLogin';
+  targetModalId = '#'+this.modalId;
   dataModal : any;
 
   message:string ='';

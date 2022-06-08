@@ -1,30 +1,43 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" routerLink="/crm" >Home</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" (click)="toggleMenu()">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarScroll">
+    <div class="collapse navbar-collapse" id="navbarScroll" [ngClass]="{show: showMenu}">
         <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll">
-            <li class="nav-item" data-toggle="collapse" data-target="#navbarTogglerDemo02">
-                <a routerLink="/crm/product-list" class="nav-link">Products</a>
-            </li>
-            <li class="nav-item" data-toggle="collapse" data-target="#navbarTogglerDemo02">
-                <a routerLink="/crm/cart" class="nav-link">Checkout</a>
-            </li>
-            <li class="nav-item" [ngClass]="{expanded: expanded}">
-                <a class="nav-link" (click)="expanded =!expanded">
-                    Link
-                </a>
-                <ul class="sub-nav">
-                    <li class="sub-nav-item"><a class="sub-nav-link" routerLink="/crm/cart">Action 1</a></li>
-                    <li class="sub-nav-item"><a class="sub-nav-link" routerLink="/crm/cart">Action 2</a></li>
-                    <li class="sub-nav-item"><a class="sub-nav-link" routerLink="/crm/cart">Action 3 </a></li>
-                </ul>
+            <!--<li class="nav-item" data-toggle="collapse" data-target="#navbarScroll">-->
+                <!--<a routerLink="/crm/product-list" class="nav-link">Products</a>-->
+            <!--</li>-->
+            <!--<li class="nav-item" data-toggle="collapse" data-target="#navbarScroll">-->
+                <!--<a routerLink="/crm/cart" class="nav-link">Checkout</a>-->
+            <!--</li>-->
+            <!--<li class="nav-item" [ngClass]="{expanded: expanded}">-->
+                <!--<a class="nav-link" (click)="expanded =!expanded">-->
+                    <!--Link-->
+                <!--</a>-->
+                <!--<ul class="sub-nav">-->
+                    <!--<li class="sub-nav-item" data-toggle="collapse" data-target="#navbarScroll"><a class="sub-nav-link" routerLink="/crm/cart">Action 1</a></li>-->
+                    <!--<li class="sub-nav-item" data-toggle="collapse" data-target="#navbarScroll"><a class="sub-nav-link" routerLink="/crm/cart">Action 2</a></li>-->
+                    <!--<li class="sub-nav-item" data-toggle="collapse" data-target="#navbarScroll"><a class="sub-nav-link" routerLink="/crm/cart">Action 3 </a></li>-->
+                <!--</ul>-->
+            <!--</li>-->
+
+            <li class="nav-item" *ngFor="let menu of menus" [ngClass]="{expanded: menu.expanded, active: menu.url ==activeUrl }">
+                <a *ngIf="!menu.children" [routerLink]="menu.url" class="nav-link" (click)="navClicked(menu)">{{menu.name}}</a>
+                <ng-container  *ngIf="menu.children">
+                    <a class="nav-link" (click)="menu.expanded = !menu.expanded;">{{menu.name}}</a>
+                    <ul class="sub-nav">
+                        <li [ngClass]="{active: sub.url ==activeUrl }" class="sub-nav-item" *ngFor="let sub of menu.children">
+                            <a class="sub-nav-link" (click)="navClicked(sub)" [routerLink]="sub.url">{{sub.name}}</a>
+                        </li>
+                    </ul>
+                </ng-container>
             </li>
         </ul>
         <form class="d-flex">
             <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
+        <button class="btn" (click)="logout()">Logout</button>
     </div>
 </nav>
