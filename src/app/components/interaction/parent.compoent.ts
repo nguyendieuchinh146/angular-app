@@ -26,11 +26,20 @@ import { ChildComponent } from './child.component';
         <p>The hero's birthday is {{ birthday | date:format }}</p>
 
         <p>{{ amount | currency:'EUR':'Euros '}}</p>
+
+         <button (click)="changeDetection()">Click change</button>
+        <ul>
+            <li *ngFor="let item of arr">
+                <app-childlist [item]="item"></app-childlist>
+            </li>
+        </ul>
     </div>
   `,
     styles: []
 })
 export class ParentComponent implements OnInit, OnDestroy {
+
+    arr = [{title: 'text 1'}, {title: 'text 2'}]
 
     message:string ='';
     subscription: Subscription = new Subscription();
@@ -81,4 +90,14 @@ export class ParentComponent implements OnInit, OnDestroy {
         this.message = $event
     }
 
+    count_item = 0;
+    changeDetection(){
+        this.count_item++;
+        const item = this.arr[0];
+        const new_item = {...item};
+        new_item.title = 'Test '+this.count_item;
+        this.arr[0] = new_item;
+
+        //this.arr[0].title = 'Test 111'
+    }
 }
