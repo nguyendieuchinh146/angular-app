@@ -13,13 +13,15 @@ import {SharedModule} from './shared/shared.module';
 import { ParentComponent } from './components/interaction/parent.compoent';
 import { ChildComponent } from  './components/interaction/child.component';
 import { SiblingComponent } from './components/interaction/sibling.compoent';
+import { ChildListComponent } from './components/interaction/childlist.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ParentComponent,
     ChildComponent,
-    SiblingComponent
+    SiblingComponent,
+    ChildListComponent
   ],
   imports: [
     BrowserModule,

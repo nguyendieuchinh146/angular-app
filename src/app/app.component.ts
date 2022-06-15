@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from './shared/elements/modal/cp-modal.service';
-import { Subscription } from 'rxjs';
+import { Observable,Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -18,17 +18,18 @@ export class AppComponent implements OnInit{
   message:string ='';
   subscription: Subscription = new Subscription();
 
-  constructor(public modalService: ModalService ) { }
+
+  constructor(public modalService: ModalService) { }
 
   onClickElement(event:any){
     console.log('event',event)
   }
 
   ngOnInit(): void {
-    this.subscription = this.modalService.currentModal.subscribe(dataModal => this.onChangeValue(dataModal))
+    //this.subscription = this.modalService.currentModal.subscribe(dataModal => this.onChangeValue(dataModal))
   }
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    //this.subscription.unsubscribe();
   }
 
   onChangeValue(value: any){

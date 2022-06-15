@@ -1,8 +1,12 @@
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CpButtonComponent} from './elements/cp-button';
 import {CpModalComponent} from './elements/modal/cp-modal';
 import {CpModalContentComponent} from './elements/modal/cp-modal-content';
+
+import {DynamicFormComponent} from './elements/dynamic-form/dynamic-form.component';
+import {DynamicFormQuestionComponent} from './elements/dynamic-form/dynamic-form-question.component';
 
 import {SoundDirective} from './directive/play-sound.directive';
 import {HighlightDirective} from './directive/highlight.directive';
@@ -10,7 +14,9 @@ import {HighlightDirective} from './directive/highlight.directive';
 const ELEMENT_COMPONENTS = [
   CpButtonComponent,
   CpModalComponent,
-  CpModalContentComponent
+  CpModalContentComponent,
+  DynamicFormComponent,
+  DynamicFormQuestionComponent
 ];
 const DIRECTIVES = [
   SoundDirective,
@@ -23,7 +29,7 @@ const DIRECTIVES = [
     ...DIRECTIVES
   ],
   imports: [
-    FormsModule
+    FormsModule, ReactiveFormsModule, CommonModule
   ],
   providers: [],
   exports: [

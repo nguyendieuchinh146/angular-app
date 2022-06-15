@@ -19,6 +19,8 @@ import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { ChartComponent } from './chart/chart.component';
 import { ZippyMultislotComponent } from './zippy-multislot/zippy-multislot.component';
+import {SharedModule} from '../../shared/shared.module';
+import { QuestionService } from '../../shared/elements/dynamic-form/question.service';
 
 @NgModule({
   declarations: [
@@ -41,8 +43,9 @@ import { ZippyMultislotComponent } from './zippy-multislot/zippy-multislot.compo
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),
+    SharedModule
   ],
   providers: [AuthService,AuthGuard, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    JwtHelperService],
+    JwtHelperService, QuestionService],
 })
 export class CrmModule {}
