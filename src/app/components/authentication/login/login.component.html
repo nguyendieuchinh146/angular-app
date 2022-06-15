@@ -1,11 +1,10 @@
 <h4>Login</h4>
-<form action="" (ngSubmit)="onLogin()">
+<form (ngSubmit)="onLogin()" [formGroup]="formLogin">
     <div class="form-group">
         <label for="username">User Name</label>
-        <input class="form-control" id="username" type="text" [(ngModel)]="formLogin.name" name="name" #username="ngModel"
-               required minlength="3" appForbiddenName="bob"/>
-        <div *ngIf="username.invalid && (username.dirty || username.touched)"
-             class="alert">
+        <input id="username" class="form-control" type="text" formControlName="username">
+
+        <div *ngIf="username.invalid && (username.dirty || username.touched || submitted)" class="alert">
             <div *ngIf="username.errors?.['required']">
                 User Name is required.
             </div>
@@ -15,15 +14,22 @@
             <div *ngIf="username.errors?.['forbiddenName']">
                 User Name cannot be Bob.
             </div>
-
         </div>
     </div>
     <div class="form-group">
         <label for="password">Password</label>
-        <input class="form-control" id="password" type="password" [(ngModel)]="formLogin.password" name="password">
+        <input id="password" class="form-control" type="password" formControlName="password">
+
+        <div *ngIf="password.invalid && (password.dirty || password.touched || submitted)" class="alert">
+            <div *ngIf="password.errors?.['required']">
+                Password is required.
+            </div>
+        </div>
+        <!--<input class="form-control" id="password" type="password" [(ngModel)]="formLogin.password" name="password">-->
     </div>
+    <div class="alert" *ngIf="msgError">{{msgError}}</div>
     <div class="form-group">
-        <button class="btn btn-primary" type="submit">Login</button>
+        <button class="btn btn-primary" type="submit" [disabled]="submitted">Login</button>
     </div>
 </form>
 <a routerLink="/auth/register">
