@@ -13,4 +13,18 @@
     background-color: #EEEEEE;
 }
 
+body{
+    background-color: #343a40;
+    color: #fff;
+}
+.table th, .table td{
+    color: #fff
+}
+a{
+    color: #fff;
+    text-decoration: underline;
+}
+.modal-content{
+    background-color: #2f3d4a;
+}
 

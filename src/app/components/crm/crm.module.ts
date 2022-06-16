@@ -21,6 +21,7 @@ import { ChartComponent } from './chart/chart.component';
 import { ZippyMultislotComponent } from './zippy-multislot/zippy-multislot.component';
 import {SharedModule} from '../../shared/shared.module';
 import { QuestionService } from '../../shared/elements/dynamic-form/question.service';
+import { ProductService } from './product.service';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,6 @@ import { QuestionService } from '../../shared/elements/dynamic-form/question.ser
     SharedModule
   ],
   providers: [AuthService,AuthGuard, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    JwtHelperService, QuestionService],
+    JwtHelperService, QuestionService,ProductService],
 })
 export class CrmModule {}

@@ -11,17 +11,13 @@ import { ModalService } from '../../../shared/elements/modal/cp-modal.service';
           <form (ngSubmit)="onSubmit()" [formGroup]="form">
 
             <div *ngFor="let question of questions" class="form-group">
-              <app-question [question]="question" [form]="form"></app-question>
+              <app-question [question]="question" [form]="form" (fileEvents)="fileChange($event)"></app-question>
             </div>
 
             <div class="form-group">
               <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Save</button>
             </div>
           </form>
-
-          <div *ngIf="payLoad" class="form-row">
-            <strong>Saved the following values</strong><br>{{payLoad}}
-          </div>
         </div>`,
     providers: [ QuestionControlService ]
 })
@@ -31,6 +27,7 @@ export class DynamicFormComponent implements OnInit {
     @Input() modalId: string = '';
     form!: FormGroup;
     payLoad = '';
+    files:any = {};
 
     constructor(private qcs: QuestionControlService, public modalService: ModalService) {}
 
@@ -39,10 +36,19 @@ export class DynamicFormComponent implements OnInit {
     }
 
     onSubmit() {
-        this.payLoad = JSON.stringify(this.form.getRawValue());
         if(this.modalId){
-            this.modalService.setModalData(this.modalId,this.payLoad)
+            this.modalService.setModalData(this.modalId, {data: this.form.getRawValue(), files: this.files})
+            this.form.reset();
         }
-
+    }
+    fileChange($event: any){
+        console.log($event);
+        let file:any = $event.value;
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            this.files[$event.key] = {file_info: {name: $event.value.name, size: $event.value.size,type: $event.value.type}, value: reader.result};
+            this.files[$event.key]['value'] = this.files[$event.key]['value'].split(',')[1];
+        };
     }
 }

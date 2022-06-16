@@ -54,4 +54,48 @@ export class QuestionService {
 
         return of(questions.sort((a, b) => a.order - b.order));
     }
+    getProductInputs() {
+
+        const questions: QuestionBase<string>[] = [
+
+            new TextboxQuestion({
+                key: 'product_name',
+                label: 'Product Name',
+                required: true,
+                order: 1,
+                className: 'form-control'
+            }),
+            new TextboxQuestion({
+                key: 'product_price',
+                label: 'Product Price',
+                required: true,
+                order: 1,
+                className: 'form-control'
+            }),
+
+            new TextboxQuestion({
+                key: 'product_description',
+                label: 'Product Description',
+                order: 2,
+                className: 'form-control'
+            }),
+
+            new FileQuestion({
+                key: 'product_image',
+                label: 'Product Image',
+                type: 'file',
+                order: 3,
+                className: ''
+            }),
+            new FileQuestion({
+                key: 'product_image_2',
+                label: 'Second Product Image',
+                type: 'file',
+                order: 4,
+                className: ''
+            })
+        ];
+
+        return of(questions.sort((a, b) => a.order - b.order));
+    }
 }
