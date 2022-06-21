@@ -23,6 +23,9 @@ import {SharedModule} from '../../shared/shared.module';
 import { QuestionService } from '../../shared/elements/dynamic-form/question.service';
 import { ProductService } from './product.service';
 
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {RedirectInterceptor} from '../authentication/auth/middleware';
+
 @NgModule({
   declarations: [
     CrmComponent,
@@ -46,7 +49,11 @@ import { ProductService } from './product.service';
     }),
     SharedModule
   ],
-  providers: [AuthService,AuthGuard, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    JwtHelperService, QuestionService,ProductService],
+  providers: [
+    AuthService,AuthGuard,
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService, QuestionService,ProductService,
+    { provide: HTTP_INTERCEPTORS, useClass: RedirectInterceptor, multi: true }
+  ],
 })
 export class CrmModule {}

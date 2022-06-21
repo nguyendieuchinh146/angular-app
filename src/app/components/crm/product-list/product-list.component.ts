@@ -18,7 +18,6 @@ export class ProductListComponent implements OnInit {
     description: ''
   }
   process: boolean = false;
-  questions$: any;
   productInputs$: any;
   subscription: Subscription = new Subscription();
 
@@ -44,10 +43,10 @@ export class ProductListComponent implements OnInit {
     window.alert('You will be notified when the product goes on sale');
   }
 
-  valueChange(event: any) { // without type info
+  valueChange(event: any) {
     console.log(event);
   }
-  onKey(event: any) { // without type info
+  onKey(event: any) {
     console.log(event.target);
   }
 
