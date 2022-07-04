@@ -5,6 +5,8 @@ import { Product, products } from '../../../products';
 import { QuestionService } from '../../../shared/elements/dynamic-form/question.service';
 import { ModalService } from '../../../shared/elements/modal/cp-modal.service';
 import { ProductService } from '../product.service';
+import { CartService } from '../../../services/cart.service';
+import { CartComponent } from '../cart/cart.component';
 
 @Component({
   selector: 'app-product-list',
@@ -23,7 +25,7 @@ export class ProductListComponent implements OnInit {
 
   productModalId = 'productModalId';
   tgProModalId =  '#'+ this.productModalId;
-  constructor(public questionService: QuestionService, public modalService: ModalService, private productService:ProductService) { }
+  constructor(public questionService: QuestionService, public modalService: ModalService, private productService:ProductService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.productInputs$ = this.questionService.getProductInputs();
@@ -68,5 +70,9 @@ export class ProductListComponent implements OnInit {
           }
       )
     }
+  }
+
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
   }
 }

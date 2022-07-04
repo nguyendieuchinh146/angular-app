@@ -1,53 +1,70 @@
-<h2>Products</h2>
-<div class="search_block" style="">
-    <h3>Search</h3>
-    <p>Name: {{productSearch.name}}</p>
-    <p>Description: {{productSearch.description}}</p>
-    <!--add product-->
-    <p><button type="button" class="btn btn-primary" data-toggle="modal" [attr.data-target]="tgProModalId">Add Product</button></p>
-    <cp-modal [modalId]="productModalId" [headerTitle]="'Add Product'">
-        <div body>
-            <div class="dynamic_form">
-                <app-dynamic-form [questions]="productInputs$ | async" [modalId]="productModalId"></app-dynamic-form>
+<div class="container">
+    <h2>Products</h2>
+    <div class="row">
+        <div class="col-9">
+            <div class="search_block" style="">
+                <h3>Search</h3>
+                <p>Name: {{productSearch.name}}</p>
+                <p>Description: {{productSearch.description}}</p>
+                <!--add product-->
+                <p><button type="button" class="btn btn-primary" data-toggle="modal" [attr.data-target]="tgProModalId">Add Product</button></p>
+                <cp-modal [modalId]="productModalId" [headerTitle]="'Add Product'">
+                    <div body>
+                        <div class="dynamic_form">
+                            <app-dynamic-form [questions]="productInputs$ | async" [modalId]="productModalId"></app-dynamic-form>
+                        </div>
+                    </div>
+                    <div footer>
+                        <div class="bg_loading" *ngIf="process">Processing...</div>
+                    </div>
+                </cp-modal>
+            </div>
+            <div style="height: 600px; overflow: auto">
+                <table class="table table-bordered">
+                    <thead class="">
+                    <th>Product name</th>
+                    <th>Product description</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><input class="form-control" type="text" [(ngModel)]="productSearch.name" (ngModelChange)="valueChange($event)" (keyup)="onKey($event)"></td>
+                        <td><input class="form-control" type="text" [(ngModel)]="productSearch.description" (ngModelChange)="valueChange($event)"></td>
+                        <td></td>
+                        <td><button class="btn btn-primary">Search</button></td>
+                    </tr>
+                    <tr *ngFor="let product of products">
+                        <td><a [title]="product.name + ' details'"
+                               [routerLink]="['/crm/products', product.id]">{{ product.name }}</a></td>
+                        <td>{{ product.description }}
+                            <div>
+                                <img style="height: 100px; margin-right: 10px" [src]="product.image" alt="Red dot" />
+                                <img style="height: 100px" [src]="product.image2" alt="Red dot" />
+                            </div></td>
+                        <td>{{ product.price }}</td>
+                        <td>
+                            <p><button class="btn btn-primary btn-sm" (click)="addToCart(product)">Add to cart</button></p>
+                            <button style="margin-bottom: 10px" class="btn btn-primary btn-sm" type="button" (click)="share()">
+                                Share
+                            </button>
+                            <app-product-alerts
+                                    [product]="product"
+                                    (notify)="onNotify()">
+                            </app-product-alerts>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div footer>
-            <div class="bg_loading" *ngIf="process">Processing...</div>
+        <div class="col-3">
+            <div class="search_block">
+                <app-cart></app-cart>
+            </div>
         </div>
-    </cp-modal>
+    </div>
 </div>
-
-<table class="table table-bordered">
-    <thead class="">
-        <th>Product name</th>
-        <th>Product description</th>
-        <th>Price</th>
-        <th>Action</th>
-    </thead>
-    <tbody>
-    <tr>
-        <td><input class="form-control" type="text" [(ngModel)]="productSearch.name" (ngModelChange)="valueChange($event)" (keyup)="onKey($event)"></td>
-        <td><input class="form-control" type="text" [(ngModel)]="productSearch.description" (ngModelChange)="valueChange($event)"></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr *ngFor="let product of products">
-        <td><a [title]="product.name + ' details'"
-               [routerLink]="['/crm/products', product.id]">{{ product.name }}</a></td>
-        <td>{{ product.description }}</td>
-        <td>{{ product.price }}</td>
-        <td>
-            <button style="margin-bottom: 10px" class="btn btn-primary btn-sm" type="button" (click)="share()">
-                Share
-            </button>
-            <app-product-alerts
-                    [product]="product"
-                    (notify)="onNotify()">
-            </app-product-alerts>
-        </td>
-    </tr>
-    </tbody>
-</table>
 
 <!--<h2>Chart</h2>-->
 <!--<app-chart></app-chart>-->

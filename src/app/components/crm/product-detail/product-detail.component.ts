@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 
 import { Product, products } from '../../../products';
 import { CartService } from '../../../services/cart.service';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,14 +13,19 @@ import { CartService } from '../../../services/cart.service';
 export class ProductDetailComponent implements OnInit {
   //product : any = [];
   product: Product | undefined;
-  constructor(private route: ActivatedRoute, private cartService: CartService) {
+  productId;
+  constructor(private route: ActivatedRoute, private cartService: CartService, private productService:ProductService) {
     const routeParams = this.route.snapshot.paramMap;
     const productIdFromRoute = Number(routeParams.get('productId'));
-    console.log(productIdFromRoute)
-    this.product = products.find(product => product.id === productIdFromRoute);
+    this.productId = productIdFromRoute;
   }
 
   ngOnInit(): void {
+    this.productService.getProduct({id: this.productId}).subscribe(
+        (data:any) => {
+          this.product = data;
+        }
+    )
   }
 
   addToCart(product: Product) {

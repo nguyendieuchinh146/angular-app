@@ -11,7 +11,7 @@
 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
 
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col">
             <div class="form-group">
                 <label for="name">
                     Name
@@ -24,8 +24,6 @@
                 </label>
                 <input class="form-control"  id="address" type="text" formControlName="address"  placeholder="Enter address">
             </div>
-        </div>
-        <div class="col-sm-6">
         </div>
     </div>
     <button class="btn btn-primary" type="submit">Purchase</button>
