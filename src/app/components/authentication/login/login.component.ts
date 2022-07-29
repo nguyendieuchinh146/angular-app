@@ -72,6 +72,9 @@ export class LoginComponent implements OnInit {
   updateLang(){
     console.log(1);
   }
+  getLang(){
+    console.log(3);
+  }
   get username(){
     return this.formLogin.get('username');
   }
