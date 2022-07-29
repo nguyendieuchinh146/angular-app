@@ -1,0 +1,8 @@
+{
+    "register" : "Register",
+    "login" : "Login",
+    "COMMON": {
+        "TITLE" : "Title book",
+        "AFFILIATE" : "{{value}} affiliate"
+    }
+}

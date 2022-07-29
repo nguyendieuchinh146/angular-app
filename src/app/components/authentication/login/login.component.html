@@ -1,4 +1,5 @@
-<h4>Login</h4>
+<h4>{{ 'login' | translate }}</h4>
+<div>{{'COMMON.AFFILIATE' | translate:param }}</div>
 <form (ngSubmit)="onLogin()" [formGroup]="formLogin">
     <div class="form-group">
         <label for="username">User Name</label>

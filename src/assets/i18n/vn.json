@@ -1,0 +1,8 @@
+{
+    "register" : "Đăng ký",
+    "login" : "Đăng nhập",
+    "COMMON": {
+        "TITLE" : "Tiêu đề sách",
+        "AFFILIATE" : "{{value}} cộng tác viên"
+    }
+}

@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   userData: any ={};
   submitted = false;
   msgError = '';
+  param = { value: 'test'}
   constructor(public jwtHelper: JwtHelperService,  public router: Router, public auth: AuthService) { }
 
   ngOnInit(): void {

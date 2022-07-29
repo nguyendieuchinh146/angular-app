@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 
@@ -11,12 +11,20 @@ import { BehaviorSubject } from 'rxjs';
 export class ModalService {
     modalServiceData: any[] = [];
     dataModal : {[k: string]: any} = {};
+    private sumsubLanguage = new Subject();
 
     private modalSource = new BehaviorSubject('');
     currentModal = this.modalSource.asObservable();
 
     constructor(private http: HttpClient) {
 
+    }
+
+    setSumsubLanguage(value: string): void{
+        this.sumsubLanguage.next(value);
+    }
+    observeSumsubLanguage(): Observable<any>{
+        return this.sumsubLanguage.asObservable();
     }
 
     getModalData(modalIdVal: string){

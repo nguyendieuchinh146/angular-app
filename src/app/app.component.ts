@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from './shared/elements/modal/cp-modal.service';
 import { Observable,Subscription } from 'rxjs';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -17,9 +18,21 @@ export class AppComponent implements OnInit{
 
   message:string ='';
   subscription: Subscription = new Subscription();
+  subscriptions: any ={};
+
+  translations = {
+    title: 'TITLE',
+  };
 
 
-  constructor(public modalService: ModalService) { }
+  constructor(public modalService: ModalService, public translate: TranslateService) {
+      this.modalService.setSumsubLanguage('test');
+      this.subscriptions.sumsunLanguage = this.modalService.observeSumsubLanguage().subscribe((data: any) => {
+          console.log("data: ", data);
+      });
+      translate.setDefaultLang('vn');
+      translate.use('vn');
+  }
 
   onClickElement(event:any){
     console.log('event',event)

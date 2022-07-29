@@ -8,6 +8,7 @@ import {routing} from './authentication.routing';
 import {AuthenticationComponent} from './authentication.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -21,6 +22,7 @@ import {RegisterComponent} from './register/register.component';
         FormsModule,
         ReactiveFormsModule,
         routing,
+        SharedModule
     ],
     providers: [],
 })
